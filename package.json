@@ -1,13 +1,14 @@
 {
-  "name": "webdev",
+  "name": "javascript",
   "version": "1.0.0",
-  "description": "honors web development",
-  "main": "index.js",
+  "description": "",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "type": "module"
+  "author": "Vaidehi Sahu",
+  "license": "MIT"
+ }
+  
+    
 
-}
