@@ -57,6 +57,12 @@ const Text = styled(Typography)`
      font-size: 16px;
 
 `
+const loginInitialValues = {
+    name:'',
+    username:'',
+    password:''
+}
+
 const signupInitialValues = {
     name: '',
     username:'',
@@ -69,6 +75,7 @@ const Login = () => {
     
     const [account, toggleAccount] = useState("login");
     const[signup, setSignup] = useState(signupInitialValues);
+    const[login,setLogin] = useState(loginInitialValues);
     const[error, setError] = useState('');
 
     const toggleSignup = () => {
@@ -90,6 +97,9 @@ const Login = () => {
         }
     }
     
+    const onValueChange = (e) => {
+        setLogin({...login, [e.target.name]: e.target.value})
+    }
 
     return(
        <Component>
@@ -98,9 +108,9 @@ const Login = () => {
         {
             account === 'login' ?
             <Wrapper>
-                <TextField variant="standard" label="Enter username" />
-                <TextField variant="standard" label="Enter password"/>
-
+                <TextField variant="standard" onChange={(e) => onValueChange(e)} name="username" label="Enter username" />
+                <TextField variant="standard" onChange={(e) => onValueChange(e)} name="password" label="Enter password"/>
+                
                 { error && <Typography>{error}</Typography> }
 
                 <LoginButton variant="contained">Login</LoginButton>
