@@ -101,6 +101,15 @@ const Login = () => {
         setLogin({...login, [e.target.name]: e.target.value})
     }
 
+    const loginUser= async () => {
+        let response = await API.userLogin(login);
+        if (response.isSuccess) {
+            setError('');
+        }else{
+            setError('Something ent wrong! Please try again');
+        }
+    }
+
     return(
        <Component>
         <Box>
@@ -108,12 +117,12 @@ const Login = () => {
         {
             account === 'login' ?
             <Wrapper>
-                <TextField variant="standard" onChange={(e) => onValueChange(e)} name="username" label="Enter username" />
-                <TextField variant="standard" onChange={(e) => onValueChange(e)} name="password" label="Enter password"/>
+                <TextField variant="standard" value={login.username}onChange={(e) => onValueChange(e)} name="username" label="Enter username" />
+                <TextField variant="standard" value={login.password}onChange={(e) => onValueChange(e)} name="password" label="Enter password"/>
                 
                 { error && <Typography>{error}</Typography> }
 
-                <LoginButton variant="contained">Login</LoginButton>
+                <LoginButton variant="contained" onClick={() => loginUser()} >Login</LoginButton>
                 <Text style={{textAlign: 'center'}}>OR</Text>
                 <SignupButton onClick={() => toggleSignup()}>Create an account</SignupButton>
             </Wrapper>
