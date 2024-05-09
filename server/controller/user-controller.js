@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 import User from '../model/user.js';
+import Token from  '../model/token.js';
 
 dotenv.config();
 
@@ -33,6 +34,9 @@ export const loginUser = async (request, response) => {
         if (match) {
             const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_KEY, {expiresIn: '15m'});
             const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_SECRET_KEY);
+
+            const newToken = new Token({token: refreshToken })
+            await newToken.save();
         }else{
             response.status(400).json({msg: 'Password does not match'});
         }
