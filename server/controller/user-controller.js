@@ -37,10 +37,13 @@ export const loginUser = async (request, response) => {
 
             const newToken = new Token({token: refreshToken })
             await newToken.save();
+
+            return response.status(200).json({accessToken: accessToken, refreshToken: refreshToken, name: user.name, username: user.username})
+
         }else{
             response.status(400).json({msg: 'Password does not match'});
         }
     } catch (error) {
-        
+        return response.status(500).json({msg: 'Error while login in user'})
     }
 }
