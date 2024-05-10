@@ -3,12 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 
 // components
-import Login from './components/account/Login';
+import Login from './components/account/account/Login';
+import DataProvider from './context/DataProvider';
 
 function App() {
   return (
     <div style={{marginTop: 64 }}>
-      <Login />
+      <DataProvider>
+       <Login />
+      </DataProvider>
+      
     </div>
   );
 }
