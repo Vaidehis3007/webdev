@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { Children, createContext, useState } from "react"
 
 export const DataContext = createContext(null);
 
@@ -11,7 +11,7 @@ const DataProvider = () => {
             account,
             setAccount
         }}>
-
+            {children}
         </DataContext.Provider>
     )
 
